@@ -1,4 +1,5 @@
-name: Run Reddit Bot Daily
+# Trying to fix GitHub Actions detection
+name: Reddit Bot Automation
 
 on:
   schedule:
