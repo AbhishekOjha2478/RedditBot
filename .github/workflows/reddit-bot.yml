@@ -1,0 +1,33 @@
+name: Run Reddit Bot Daily
+
+on:
+  schedule:
+    - cron: "0 6 * * *"  # Runs daily at 6 AM UTC
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run bot script
+        env:
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          USER_AGENT: ${{ secrets.USER_AGENT }}
+          WORDPRESS_ACCESS_TOKEN: ${{ secrets.WORDPRESS_ACCESS_TOKEN }}
+          WORDPRESS_SITE: ${{ secrets.WORDPRESS_SITE }}
+        run: python reddit_bot.py  # Ensure this is the correct script name
