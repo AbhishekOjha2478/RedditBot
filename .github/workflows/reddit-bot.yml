@@ -9,18 +9,20 @@ on:
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
+      
+      - name: Debug - List Files
+        run: ls -la  # Show all files to confirm requirements.txt exists
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
-
+          python-version: '3.x'
+      
       - name: Install Dependencies
-        run: pip install -r $GITHUB_WORKSPACE/requirements.txt
+        run: pip install -r requirements.txt
         
 
       - name: Run bot script
