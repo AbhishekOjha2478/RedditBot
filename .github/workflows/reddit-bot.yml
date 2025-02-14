@@ -10,6 +10,9 @@ jobs:
   run-bot:
     runs-on: ubuntu-latest
     steps:
+      - name: Debug - List Files
+        run: dir
+  
       - name: Checkout repository
         uses: actions/checkout@v4
       
