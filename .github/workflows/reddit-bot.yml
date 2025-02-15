@@ -12,12 +12,12 @@ jobs:
     steps:
       - name: Debug - List Files
         run: dir
+
+      - name: Change to Repo Directory
+        run: cd $GITHUB_WORKSPACE  
   
       - name: Checkout repository
         uses: actions/checkout@v4
-      
-      - name: Debug - List Files
-        run: ls -la  # Show all files to confirm requirements.txt exists
 
       - name: Set up Python
         uses: actions/setup-python@v4
